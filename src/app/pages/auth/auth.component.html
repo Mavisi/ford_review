@@ -1,0 +1,129 @@
+<!-- Vídeo de fundo -->
+<video autoplay muted loop class="video-bg">
+  <source src="assets/videos/mustang.mp4" type="video/mp4" />
+</video>
+
+<!-- Conteúdo principal -->
+<div
+  class="vh-100 d-flex align-items-center justify-content-center position-relative z-1"
+>
+  <div class="auth-container">
+    <h3 class="auth-title">Ford Reviews</h3>
+    <p class="auth-subtitle">Faça login para avaliar os veículos Ford</p>
+
+    <div class="btn-group toggle-buttons w-100 mb-4">
+      <button
+        class="btn btn-outline-dark"
+        [class.active]="isLoginMode"
+        (click)="toggleMode(true)"
+      >
+        Login
+      </button>
+      <button
+        class="btn btn-outline-dark"
+        [class.active]="!isLoginMode"
+        (click)="toggleMode(false)"
+      >
+        Cadastro
+      </button>
+    </div>
+
+    <!-- Formulário de login -->
+    <form *ngIf="isLoginMode" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="usernameLogin" class="form-label">Usuário</label>
+        <input
+          type="text"
+          id="usernameLogin"
+          class="form-control"
+          name="usernameLogin"
+          [(ngModel)]="loginData.username"
+          required
+          placeholder="Seu nome de usuário"
+        />
+      </div>
+
+      <div class="mb-3 position-relative">
+        <label for="passwordLogin" class="form-label">Senha</label>
+        <input
+          [type]="showPasswordLogin ? 'text' : 'password'"
+          id="passwordLogin"
+          class="form-control"
+          name="passwordLogin"
+          [(ngModel)]="loginData.password"
+          required
+          placeholder="Sua senha"
+        />
+        <button
+          type="button"
+          class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
+          (click)="showPasswordLogin = !showPasswordLogin"
+        >
+          <i
+            class="bi"
+            [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"
+          ></i>
+        </button>
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100">Entrar</button>
+    </form>
+
+    <!-- Formulário de cadastro -->
+    <form *ngIf="!isLoginMode" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="usernameRegister" class="form-label">Usuário</label>
+        <input
+          type="text"
+          id="usernameRegister"
+          class="form-control"
+          name="usernameRegister"
+          [(ngModel)]="registerData.username"
+          required
+          placeholder="Escolha um nome de usuário"
+        />
+      </div>
+      <div class="mb-3 position-relative">
+        <label for="passwordRegister" class="form-label">Senha</label>
+        <input
+          [type]="showPasswordRegister ? 'text' : 'password'"
+          id="passwordRegister"
+          class="form-control"
+          name="passwordRegister"
+          [(ngModel)]="registerData.password"
+          required
+          placeholder="Escolha uma senha"
+        />
+        <button
+          type="button"
+          class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
+          (click)="showPasswordRegister = !showPasswordRegister"
+        >
+          <i
+            class="bi"
+            [ngClass]="showPasswordRegister ? 'bi-eye-slash' : 'bi-eye'"
+          ></i>
+        </button>
+      </div>
+      
+      <div class="mb-3">
+        <label for="displayName" class="form-label">Nome de exibição</label>
+        <input
+          type="text"
+          id="displayName"
+          class="form-control"
+          name="displayName"
+          [(ngModel)]="registerData.displayName"
+          required
+          placeholder="Como você quer ser chamado"
+        />
+      </div>
+      <button type="submit" class="btn btn-dark w-100">Cadastrar</button>
+    </form>
+
+    <hr class="my-4" />
+    <button class="btn google-btn w-100" disabled>Login com Google</button>
+
+    <p class="auth-footer mt-3">Avaliação e revisão de veículos Ford</p>
+  </div>
+</div>

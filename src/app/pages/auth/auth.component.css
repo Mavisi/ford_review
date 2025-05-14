@@ -1,0 +1,80 @@
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+}
+
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.auth-container {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 1); /* opaco */
+  backdrop-filter: blur(5px); 
+  /* efeito vidro fosco */
+  border-radius: 10px;
+  padding: 2.5rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.auth-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Subtítulo */
+.auth-subtitle {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Botões toggle (Login/Cadastro) */
+.toggle-buttons .btn {
+  border-radius: 0;
+}
+
+.toggle-buttons .btn:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.toggle-buttons .btn:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* Botão Google */
+.google-btn {
+  background-color: #ea4335;
+  color: white;
+  font-weight: bold;
+}
+
+.google-btn:hover {
+  background-color: #d7382e;
+}
+
+/* Rodapé */
+.auth-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  color: #6c757d;
+}
