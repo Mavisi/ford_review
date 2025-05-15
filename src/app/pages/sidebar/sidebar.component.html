@@ -1,0 +1,33 @@
+<div class="sidebar" [ngClass]="{ collapsed: isCollapsed }">
+  <!-- Topo com título e botão de menu -->
+  <div class="top-section d-flex justify-content-between align-items-center mb-3 w-100">
+    <h5 *ngIf="!isCollapsed" class="mb-0">Ford Reviews</h5>
+    <button class="btn btn-sm toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+
+  <!-- Menu de navegação -->
+  <nav class="nav flex-column w-100">
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" [title]="isCollapsed ? 'Dashboard' : ''">
+      <i class="bi bi-grid"></i>
+      <span *ngIf="!isCollapsed" class="ms-2">Dashboard</span>
+    </a>
+    <a class="nav-link" routerLink="/meus-reviews" routerLinkActive="active" [title]="isCollapsed ? 'Reviews' : ''">
+      <i class="bi bi-star"></i>
+      <span *ngIf="!isCollapsed" class="ms-2">Meus Reviews</span>
+    </a>
+  </nav>
+
+  <!-- Informações do usuário e botão de logout -->
+ <div class="user-info mt-auto w-100 text-center">
+  <ng-container *ngIf="!isCollapsed">
+    <p class="mb-1 text-muted">Logado como:</p>
+    <p class="fw-bold">{{ loggedUser?.displayName || 'Cliente' }}</p>
+  </ng-container>
+
+  <button class="btn btn-outline-danger btn-sm w-100 mt-2" (click)="logout()" [title]="'Sair'">
+    <i class="bi bi-box-arrow-right me-1"></i>
+    <span *ngIf="!isCollapsed">Sair</span>
+  </button>
+</div>
