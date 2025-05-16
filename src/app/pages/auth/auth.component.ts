@@ -14,7 +14,7 @@ export class AuthComponent {
   isLoginMode = true;
   showPasswordLogin = false;
   showPasswordRegister = false;
-  
+
   loginData = {
     username: '',
     password: '',
@@ -72,7 +72,11 @@ export class AuthComponent {
     const newUser = { ...this.registerData };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
-    alert('Cadastro realizado com sucesso! Faça login agora.');
-    this.toggleMode(true);
+
+    // ✅ Salva o usuário logado com nome de exibição
+    localStorage.setItem('loggedUser', JSON.stringify(newUser));
+
+    alert('Cadastro realizado com sucesso!');
+    this.router.navigate(['/dashboard']); // ✅ já navega após cadastrar
   }
 }
