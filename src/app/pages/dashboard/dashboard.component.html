@@ -1,6 +1,77 @@
 <app-sidebar></app-sidebar>
 
-<div class="content" style="margin-left: 250px;">
-  <!-- Conteúdo da dashboard -->
-  <h2>Bem-vindo ao Ford Review</h2>
+<div class="container-fluid" style="margin-left: 250px; padding: 2rem">
+  <h2 class="mb-4 fw-bold">Veículos Ford</h2>
+
+  <!-- Filtros -->
+  <div class="row mb-4">
+    <div class="col-md-4 mb-2">
+      <label class="form-label">Nome do veículo</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="nameFilter"
+        (input)="filterCars()"
+        placeholder="Buscar por nome..."
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label class="form-label">Tipo</label>
+      <select
+        class="form-select"
+        [(ngModel)]="typeFilter"
+        (change)="filterCars()"
+      >
+        <option *ngFor="let type of getUniqueTypes()" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-2">
+      <label class="form-label">Ano</label>
+      <select
+        class="form-select"
+        [(ngModel)]="yearFilter"
+        (change)="filterCars()"
+      >
+        <option *ngFor="let year of getUniqueYears()" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Cards de veículos -->
+  <div class="row">
+    <div *ngIf="filteredCars.length === 0" class="text-center text-muted">
+      <p>Nenhum veículo encontrado com os filtros atuais.</p>
+    </div>
+
+    <div class="col-md-4 mb-4" *ngFor="let car of filteredCars">
+      <div class="card h-100 shadow-sm">
+        <img
+          [src]="car.image"
+          (error)="car.image = 'assets/images/default.jpg'"
+          class="card-img-top"
+          alt="{{ car.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ car.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{ car.year }} - {{ car.type }}
+          </h6>
+          <p class="card-text">
+            <strong>{{ car.engine }}</strong>
+          </p>
+          <p class="card-text">{{ car.description }}</p>
+          <button
+            class="btn btn-outline-primary mt-2 w-100"
+            (click)="goToDetails(car.id)"
+          >
+            Ver Detalhes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
