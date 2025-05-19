@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../../firebase.config'; // ajuste o caminho se necessário
-
+import { auth, provider } from '../../firebase.config';
 
 @Component({
   standalone: true,
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule], 
 })
-export class AuthComponent {
+export class AuthComponent implements AfterViewInit {
+  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit(): void {
+    // ✅ Força o vídeo a iniciar sem som
+    this.bgVideo.nativeElement.muted = true;
+    this.bgVideo.nativeElement.play();
+  }
+
   isLoginMode = true;
   showPasswordLogin = false;
   showPasswordRegister = false;
@@ -34,12 +41,10 @@ export class AuthComponent {
 
   constructor(private router: Router) {}
 
-  // Alterna entre modo Login e Cadastro
   toggleMode(isLogin: boolean) {
     this.isLoginMode = isLogin;
   }
 
-  // Quando o formulário for submetido
   onSubmit() {
     if (this.isLoginMode) {
       this.login();
@@ -48,7 +53,6 @@ export class AuthComponent {
     }
   }
 
-  // Processa o login do usuário
   private login() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find(
@@ -66,7 +70,6 @@ export class AuthComponent {
     }
   }
 
-  // Cadastra novo usuário
   private register() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const exists = users.some(
@@ -86,31 +89,29 @@ export class AuthComponent {
     this.acceptedTerms = false;
   }
 
-  // Abre a modal de termos
   abrirModalTermos(event: Event) {
-    event.preventDefault(); // evita navegação do link
+    event.preventDefault();
     this.modalTermosAberto = true;
   }
 
-  // Fecha a modal de termos
   fecharModalTermos() {
     this.modalTermosAberto = false;
   }
 
   loginWithGoogle() {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      const newUser = {
-        username: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      };
-      localStorage.setItem('loggedUser', JSON.stringify(newUser));
-      this.router.navigate(['/dashboard']);
-    })
-    .catch((error) => {
-      alert('Erro ao fazer login com Google: ' + error.message);
-    });
-}
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        const newUser = {
+          username: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+        localStorage.setItem('loggedUser', JSON.stringify(newUser));
+        this.router.navigate(['/dashboard']);
+      })
+      .catch((error) => {
+        alert('Erro ao fazer login com Google: ' + error.message);
+      });
+  }
 }

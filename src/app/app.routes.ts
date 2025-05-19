@@ -4,7 +4,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarDetailsComponent } from './pages/car-details/car-details.component';
 import { MeusReviewsComponent } from './pages/meus-reviews/meus-reviews.component';
 
-// Você pode adicionar MeusReviewsComponent quando criar
 
 export const routes: Routes = [
   { path: 'auth', component: AuthComponent },

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  imports: [SidebarComponent, CommonModule, FormsModule], // importa a sidebar aqui
+  imports: [SidebarComponent, CommonModule, FormsModule],
 })
 export class DashboardComponent implements OnInit {
 
