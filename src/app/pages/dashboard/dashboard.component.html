@@ -2,7 +2,7 @@
 <app-sidebar></app-sidebar>
 
 <div class="container-fluid py-4 px-3">
-  <h2 class="mb-4 fw-bold">Veículos Ford</h2>
+  <h2 class="mb-4 fw-bold text-center">Veículos Ford</h2>
 
   <!-- Filtros -->
   <div class="row mb-4">
@@ -49,7 +49,7 @@
     </div>
 
     <div class="col-md-4 mb-4" *ngFor="let car of filteredCars">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm glass">
         <img
           [src]="car.image"
           (error)="car.image = 'assets/images/default.jpg'"
@@ -58,7 +58,7 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ car.name }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
+          <h6 class="card-subtitle mb-2 ">
             {{ car.year }} - {{ car.type }}
           </h6>
           <p class="card-text">

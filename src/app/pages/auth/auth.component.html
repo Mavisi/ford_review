@@ -4,26 +4,16 @@
 </video>
 
 <!-- Conteúdo principal -->
-<div
-  class="vh-100 d-flex align-items-center justify-content-center position-relative z-1"
->
+<div class="vh-100 d-flex align-items-center justify-content-center position-relative z-1">
   <div class="auth-container">
     <h3 class="auth-title">Ford Reviews</h3>
-    <p class="auth-subtitle">Faça login para avaliar os veículos Ford </p>
+    <p class="auth-subtitle">Faça login para avaliar os veículos Ford</p>
 
     <div class="btn-group toggle-buttons w-100 mb-4">
-      <button
-        class="btn btn-outline-dark"
-        [class.active]="isLoginMode"
-        (click)="toggleMode(true)"
-      >
+      <button class="btn btn-outline-dark" [class.active]="isLoginMode" (click)="toggleMode(true)">
         Login
       </button>
-      <button
-        class="btn btn-outline-dark"
-        [class.active]="!isLoginMode"
-        (click)="toggleMode(false)"
-      >
+      <button class="btn btn-outline-dark" [class.active]="!isLoginMode" (click)="toggleMode(false)">
         Cadastro
       </button>
     </div>
@@ -32,37 +22,17 @@
     <form *ngIf="isLoginMode" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="usernameLogin" class="form-label">Usuário</label>
-        <input
-          type="text"
-          id="usernameLogin"
-          class="form-control"
-          name="usernameLogin"
-          [(ngModel)]="loginData.username"
-          required
-          placeholder="Seu nome de usuário"
-        />
+        <input type="text" id="usernameLogin" class="form-control" name="usernameLogin"
+               [(ngModel)]="loginData.username" required placeholder="Seu nome de usuário" />
       </div>
 
       <div class="mb-3 position-relative">
         <label for="passwordLogin" class="form-label">Senha</label>
-        <input
-          [type]="showPasswordLogin ? 'text' : 'password'"
-          id="passwordLogin"
-          class="form-control"
-          name="passwordLogin"
-          [(ngModel)]="loginData.password"
-          required
-          placeholder="Sua senha"
-        />
-        <button
-          type="button"
-          class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
-          (click)="showPasswordLogin = !showPasswordLogin"
-        >
-          <i
-            class="bi"
-            [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"
-          ></i>
+        <input [type]="showPasswordLogin ? 'text' : 'password'" id="passwordLogin" class="form-control"
+               name="passwordLogin" [(ngModel)]="loginData.password" required placeholder="Sua senha" />
+        <button type="button" class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
+                (click)="showPasswordLogin = !showPasswordLogin">
+          <i class="bi" [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"></i>
         </button>
       </div>
 
@@ -73,57 +43,63 @@
     <form *ngIf="!isLoginMode" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="usernameRegister" class="form-label">Usuário</label>
-        <input
-          type="text"
-          id="usernameRegister"
-          class="form-control"
-          name="usernameRegister"
-          [(ngModel)]="registerData.username"
-          required
-          placeholder="Escolha um nome de usuário"
-        />
+        <input type="text" id="usernameRegister" class="form-control" name="usernameRegister"
+               [(ngModel)]="registerData.username" required placeholder="Escolha um nome de usuário" />
       </div>
+
       <div class="mb-3 position-relative">
         <label for="passwordRegister" class="form-label">Senha</label>
-        <input
-          [type]="showPasswordRegister ? 'text' : 'password'"
-          id="passwordRegister"
-          class="form-control"
-          name="passwordRegister"
-          [(ngModel)]="registerData.password"
-          required
-          placeholder="Escolha uma senha"
-        />
-        <button
-          type="button"
-          class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
-          (click)="showPasswordRegister = !showPasswordRegister"
-        >
-          <i
-            class="bi"
-            [ngClass]="showPasswordRegister ? 'bi-eye-slash' : 'bi-eye'"
-          ></i>
+        <input [type]="showPasswordRegister ? 'text' : 'password'" id="passwordRegister" class="form-control"
+               name="passwordRegister" [(ngModel)]="registerData.password" required placeholder="Escolha uma senha" />
+        <button type="button" class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2"
+                (click)="showPasswordRegister = !showPasswordRegister">
+          <i class="bi" [ngClass]="showPasswordRegister ? 'bi-eye-slash' : 'bi-eye'"></i>
         </button>
       </div>
-      
+
       <div class="mb-3">
         <label for="displayName" class="form-label">Nome de exibição</label>
-        <input
-          type="text"
-          id="displayName"
-          class="form-control"
-          name="displayName"
-          [(ngModel)]="registerData.displayName"
-          required
-          placeholder="Como você quer ser chamado"
-        />
+        <input type="text" id="displayName" class="form-control" name="displayName"
+               [(ngModel)]="registerData.displayName" required placeholder="Como você quer ser chamado" />
       </div>
-      <button type="submit" class="btn btn-dark w-100">Cadastrar</button>
+
+      <!-- Checkbox de aceitação -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="acceptTerms" [(ngModel)]="acceptedTerms" name="acceptedTerms" />
+        <label class="form-check-label" for="acceptTerms">
+          Declaro que li e aceito os 
+          <a href="#" (click)="abrirModalTermos($event)">Termos e Condições</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100" [disabled]="!acceptedTerms">Cadastrar</button>
     </form>
 
     <hr class="my-4" />
     <button class="btn google-btn w-100" disabled>Login com Google</button>
 
     <p class="auth-footer mt-3">Avaliação e revisão de veículos Ford</p>
+  </div>
+</div>
+
+<!-- Modal de Termos e Condições -->
+<div class="modal fade show d-block" *ngIf="modalTermosAberto" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-4">
+      <div class="modal-header">
+        <h5 class="modal-title">Termos e Condições</h5>
+        <button type="button" class="btn-close" (click)="fecharModalTermos()"></button>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+        <p><strong>Última atualização:</strong> [data]</p>
+        <p>Ao utilizar o sistema Ford Reviews, você concorda com a coleta e o uso de informações conforme descrito nesta política, em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
+        <p>Coletamos apenas as informações necessárias para identificar você no sistema, como nome de usuário, nome de exibição e senha. Suas avaliações e imagens são armazenadas localmente no seu navegador e não são compartilhadas com terceiros.</p>
+        <p>Você pode excluir seus dados a qualquer momento, limpando o armazenamento local do navegador ou saindo do sistema.</p>
+        <p>Não use senhas sensíveis ou insira informações pessoais em comentários. Este sistema é apenas para fins informativos e de interação sobre veículos Ford.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="fecharModalTermos()">Concordo</button>
+      </div>
+    </div>
   </div>
 </div>

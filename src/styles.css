@@ -1,6 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
+body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* ← bloqueia rolagem lateral */
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+.bg-animado {
+  color: #ffffff;
+  background: linear-gradient(-45deg, #0a3d91, #111, #0a3d91, #222);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }

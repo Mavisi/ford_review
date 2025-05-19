@@ -9,5 +9,7 @@
 <!-- Sidebar (offcanvas) -->
 <app-sidebar></app-sidebar>
 
-<!-- Área principal das rotas -->
-<router-outlet></router-outlet>
+<!-- Área principal com fundo condicional -->
+<div [ngClass]="{ 'bg-animado': !isAuthRoute() }">
+  <router-outlet></router-outlet>
+</div>

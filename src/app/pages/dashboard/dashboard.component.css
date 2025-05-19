@@ -11,3 +11,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.card.glass {
+  background: rgba(255, 255, 255, 0.1); /* Levemente transparente */
+  border-radius: 16px;
+  backdrop-filter: blur(10px); /* O efeito de vidro fosco */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidade Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+h6{
+    color: #FFD700	;
+}

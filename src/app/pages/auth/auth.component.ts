@@ -26,13 +26,17 @@ export class AuthComponent {
     displayName: '',
   };
 
+  acceptedTerms = false;
+  modalTermosAberto = false;
+
   constructor(private router: Router) {}
 
+  // Alterna entre modo Login e Cadastro
   toggleMode(isLogin: boolean) {
     this.isLoginMode = isLogin;
   }
-  // Para o login, o usuário deve fornecer um nome de usuário e senha.
-  // Para o registro, o usuário deve fornecer um nome de usuário, senha e nome de exibição.
+
+  // Quando o formulário for submetido
   onSubmit() {
     if (this.isLoginMode) {
       this.login();
@@ -41,6 +45,7 @@ export class AuthComponent {
     }
   }
 
+  // Processa o login do usuário
   private login() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find(
@@ -58,6 +63,7 @@ export class AuthComponent {
     }
   }
 
+  // Cadastra novo usuário
   private register() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const exists = users.some(
@@ -72,11 +78,19 @@ export class AuthComponent {
     const newUser = { ...this.registerData };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
+    alert('Cadastro realizado com sucesso! Faça login agora.');
+    this.toggleMode(true);
+    this.acceptedTerms = false;
+  }
 
-    // ✅ Salva o usuário logado com nome de exibição
-    localStorage.setItem('loggedUser', JSON.stringify(newUser));
+  // Abre a modal de termos
+  abrirModalTermos(event: Event) {
+    event.preventDefault(); // evita navegação do link
+    this.modalTermosAberto = true;
+  }
 
-    alert('Cadastro realizado com sucesso!');
-    this.router.navigate(['/dashboard']); // ✅ já navega após cadastrar
+  // Fecha a modal de termos
+  fecharModalTermos() {
+    this.modalTermosAberto = false;
   }
 }

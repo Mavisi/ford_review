@@ -1,6 +1,6 @@
 <app-sidebar></app-sidebar>
 
-<div class="container py-4" style="margin-left: 250px;">
+<div class="container py-4" >
   <button class="btn btn-link mb-3" (click)="goBack()">← Voltar para Dashboard</button>
 
   <!-- Detalhes do veículo -->
@@ -51,7 +51,7 @@
 
 <!-- Avaliações -->
 <div *ngIf="activeTab === 'reviews'">
-  <div *ngFor="let r of reviews" class="border p-3 rounded mb-3">
+  <div *ngFor="let r of reviews" class="card bg-white text-dark p-3 mb-3">
     <div class="d-flex justify-content-between">
       <strong>{{ r.user }}</strong>
       <span>
