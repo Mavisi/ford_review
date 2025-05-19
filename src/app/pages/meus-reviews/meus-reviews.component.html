@@ -1,0 +1,22 @@
+<app-sidebar></app-sidebar>
+
+<div class="container py-4" style="margin-left: 250px;">
+  <h3 class="mb-4">Meus Reviews</h3>
+
+  <div *ngIf="allReviews.length === 0" class="text-muted">Você ainda não avaliou nenhum veículo.</div>
+
+  <div *ngFor="let item of allReviews" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.car.name }} ({{ item.car.year }})</h5>
+      <div class="mb-2">
+        <i class="bi" *ngFor="let i of [1,2,3,4,5]"
+           [ngClass]="{
+             'bi-star-fill text-warning': i <= item.review.rating,
+             'bi-star text-muted': i > item.review.rating
+           }"></i>
+      </div>
+      <p class="card-text">{{ item.review.comment }}</p>
+      <small class="text-muted">Publicado em {{ item.review.date }}</small>
+    </div>
+  </div>
+</div>

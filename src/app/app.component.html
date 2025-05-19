@@ -1,2 +1,13 @@
-<!-- app.component.html -->
+<button *ngIf="!isAuthRoute()" class="btn btn-primary position-fixed top-0 start-0 m-3 z-3"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menuLateral"
+        aria-controls="menuLateral">
+  <i class="bi bi-list"></i>
+</button>
+
+<!-- Sidebar (offcanvas) -->
+<app-sidebar></app-sidebar>
+
+<!-- Área principal das rotas -->
 <router-outlet></router-outlet>

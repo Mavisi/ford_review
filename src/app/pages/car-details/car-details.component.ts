@@ -14,7 +14,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   imports: [CommonModule, FormsModule, SidebarComponent],
 })
 export class CarDetailsComponent implements OnInit {
-  // Informações do carro atual  
+  // Informações do carro atual
   car: Vehicle | null = null;
 
   // Dados do usuário logado (puxado do localStorage)
@@ -31,6 +31,7 @@ export class CarDetailsComponent implements OnInit {
   // Lista de imagens da galeria desse carro (futuramente)
   gallery: string[] = [];
 
+  activeTab: 'reviews' | 'gallery' = 'reviews';
   // Controle de exibição do modal de avaliação
   modalAberto: boolean = false;
 
@@ -83,20 +84,46 @@ export class CarDetailsComponent implements OnInit {
 
   // Publica uma nova avaliação e salva no localStorage
   submitReview() {
+
+     console.log('Chamou submitReview');
+     
     if (!this.car || !this.loggedUser) return;
 
-  const newReview = {
-    user: this.loggedUser.displayName,
-    date: new Date().toLocaleDateString('pt-BR'),
-    comment: this.reviewText,
-    rating: this.selectedRating
-  };
+    const newReview = {
+      user: this.loggedUser.displayName,
+      date: new Date().toLocaleDateString('pt-BR'),
+      comment: this.reviewText,
+      rating: this.selectedRating,
+    };
 
-  const existing = JSON.parse(localStorage.getItem(`reviews_${this.car.id}`) || '[]');
-  existing.push(newReview);
-  localStorage.setItem(`reviews_${this.car.id}`, JSON.stringify(existing));
+    const existing = JSON.parse(
+      localStorage.getItem(`reviews_${this.car.id}`) || '[]'
+    );
+    existing.push(newReview);
+    localStorage.setItem(`reviews_${this.car.id}`, JSON.stringify(existing));
 
-  this.reviews = existing;
-  this.closeModal();
+    this.reviews = existing;
+    this.closeModal();
+  }
+  addPhoto(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const base64 = reader.result as string;
+
+        if (this.car) {
+          this.gallery.push(base64);
+          localStorage.setItem(
+            `gallery_${this.car.id}`,
+            JSON.stringify(this.gallery)
+          );
+        }
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 }

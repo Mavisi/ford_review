@@ -1,6 +1,7 @@
+<!-- Botão que abre a sidebar -->
 <app-sidebar></app-sidebar>
 
-<div class="container-fluid" style="margin-left: 250px; padding: 2rem">
+<div class="container-fluid py-4 px-3">
   <h2 class="mb-4 fw-bold">Veículos Ford</h2>
 
   <!-- Filtros -->
@@ -52,7 +53,7 @@
         <img
           [src]="car.image"
           (error)="car.image = 'assets/images/default.jpg'"
-          class="card-img-top"
+          class="card-img-top img-fluid"
           alt="{{ car.name }}"
         />
         <div class="card-body">

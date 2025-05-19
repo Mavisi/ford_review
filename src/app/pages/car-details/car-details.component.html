@@ -28,22 +28,29 @@
         <p>{{ car?.description }}</p>
 
         <button class="btn btn-dark me-2" (click)="openModal()">Adicionar Avaliação</button>
-        <button class="btn btn-outline-secondary">Adicionar Foto</button>
+        <input type="file" accept="image/*" hidden #fileInput (change)="addPhoto($event)">
+        <button class="btn btn-outline-secondary" (click)="fileInput.click()">Adicionar Foto</button>
+
       </div>
     </div>
   </div>
 
-  <!-- Tabs -->
-  <ul class="nav nav-tabs mb-3">
-    <li class="nav-item">
-      <a class="nav-link active">Avaliações ({{ reviews.length }})</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Galeria ({{ gallery.length }})</a>
-    </li>
-  </ul>
+  <!-- Controle de abas dinâmicas -->
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTab === 'reviews'" (click)="activeTab = 'reviews'">
+      Avaliações ({{ reviews.length }})
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTab === 'gallery'" (click)="activeTab = 'gallery'">
+      Galeria ({{ gallery.length }})
+    </a>
+  </li>
+</ul>
 
-  <!-- Lista de avaliações -->
+<!-- Avaliações -->
+<div *ngIf="activeTab === 'reviews'">
   <div *ngFor="let r of reviews" class="border p-3 rounded mb-3">
     <div class="d-flex justify-content-between">
       <strong>{{ r.user }}</strong>
@@ -59,32 +66,44 @@
     <small class="text-muted">{{ r.date }}</small>
     <p class="mt-2 mb-0">{{ r.comment }}</p>
   </div>
+</div>
 
-  <!-- Modal de Avaliação -->
-  <div class="modal fade show d-block" tabindex="-1" *ngIf="modalAberto" style="background-color: rgba(0,0,0,0.5);">
-    <div class="modal-dialog">
-      <div class="modal-content p-4">
-        <div class="modal-header">
-          <h5 class="modal-title">Avaliar {{ car?.name }}</h5>
-          <button type="button" class="btn-close" (click)="closeModal()"></button>
-        </div>
-        <div class="modal-body">
-          <p class="text-muted">Compartilhe sua experiência com este veículo.</p>
+<!-- Galeria -->
+<div *ngIf="activeTab === 'gallery'">
+  <div *ngIf="gallery.length === 0" class="text-muted mb-3">Nenhuma foto enviada ainda.</div>
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let img of gallery">
+      <div class="card shadow-sm">
+        <img [src]="img" class="card-img-top" alt="Foto do veículo">
+      </div>
+    </div>
+  </div>
+</div>
 
-          <label class="form-label">Nota</label>
-          <div class="mb-3">
-            <i class="bi" *ngFor="let star of [1,2,3,4,5]"
-               (click)="selectedRating = star"
-               [ngClass]="star <= selectedRating ? 'bi-star-fill text-warning' : 'bi-star text-muted'"
-               style="font-size: 1.5rem; cursor: pointer;"></i>
-          </div>
+<!-- Modal de Avaliação -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="modalAberto" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <div class="modal-header">
+        <h5 class="modal-title">Avaliar {{ car?.name }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Compartilhe sua experiência com este veículo.</p>
 
-          <label class="form-label">Comentário</label>
-          <textarea class="form-control" rows="4" [(ngModel)]="reviewText" placeholder="Escreva sua avaliação..."></textarea>
+        <label class="form-label">Nota</label>
+        <div class="mb-3">
+          <i class="bi" *ngFor="let star of [1,2,3,4,5]"
+             (click)="selectedRating = star"
+             [ngClass]="star <= selectedRating ? 'bi-star-fill text-warning' : 'bi-star text-muted'"
+             style="font-size: 1.5rem; cursor: pointer;"></i>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" (click)="submitReview()">Publicar</button>
-        </div>
+
+        <label class="form-label">Comentário</label>
+        <textarea class="form-control" rows="4" [(ngModel)]="reviewText" placeholder="Escreva sua avaliação..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="submitReview()">Publicar</button>
       </div>
     </div>
   </div>

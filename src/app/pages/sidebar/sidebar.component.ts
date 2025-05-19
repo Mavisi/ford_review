@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule]
 })
 export class SidebarComponent {
   loggedUser = JSON.parse(localStorage.getItem('loggedUser') || 'null');
@@ -17,11 +17,5 @@ export class SidebarComponent {
   logout() {
     localStorage.removeItem('loggedUser');
     this.router.navigate(['/auth']);
-  }
-
-  isCollapsed = false;
-
-  toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
   }
 }
