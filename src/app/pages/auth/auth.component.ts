@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../firebase.config'; // ajuste o caminho se necessário
+
 
 @Component({
   standalone: true,
@@ -93,4 +96,21 @@ export class AuthComponent {
   fecharModalTermos() {
     this.modalTermosAberto = false;
   }
+
+  loginWithGoogle() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      const newUser = {
+        username: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      };
+      localStorage.setItem('loggedUser', JSON.stringify(newUser));
+      this.router.navigate(['/dashboard']);
+    })
+    .catch((error) => {
+      alert('Erro ao fazer login com Google: ' + error.message);
+    });
+}
 }
