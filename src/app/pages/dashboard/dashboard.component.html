@@ -58,9 +58,7 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ car.name }}</h5>
-          <h6 class="card-subtitle mb-2 ">
-            {{ car.year }} - {{ car.type }}
-          </h6>
+          <h6 class="card-subtitle mb-2">{{ car.year }} - {{ car.type }}</h6>
           <p class="card-text">
             <strong>{{ car.engine }}</strong>
           </p>
@@ -68,6 +66,7 @@
           <button
             class="btn btn-outline-primary mt-2 w-100"
             (click)="goToDetails(car.id)"
+            style="color: white; border-color: white"
           >
             Ver Detalhes
           </button>
