@@ -1,59 +1,121 @@
-# ReviewFord
+# 🚗 Ford Reviews
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+Uma aplicação web interativa e responsiva para avaliações de veículos da Ford. Os usuários podem se cadastrar, fazer login (incluindo via Google), avaliar veículos, adicionar fotos, ver reviews de outros usuários e visualizar suas próprias avaliações. Tudo armazenado localmente no navegador com uma UI moderna e animada.
 
-## Development server
+## 📸 Preview
 
-To start a local development server, run:
+![Ford Reviews Preview](assets/images/ford-logo.png)
+
+---
+
+## ✨ Funcionalidades
+
+- 🔐 Autenticação com usuário/senha
+- 🔐 Login com Google (Firebase Auth)
+- 📦 Armazenamento em `localStorage`
+- 🏷️ Avaliações com nota (1 a 5 estrelas) e comentário
+- 🖼️ Upload e exibição de fotos dos veículos
+- 👤 Página "Meus Reviews" com todos os comentários do usuário
+- 🎥 Tela de login com vídeo de fundo responsivo
+- 📱 Interface responsiva (Bootstrap 5)
+- 🌓 Modo offcanvas no menu lateral
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Angular 17+**
+- **Bootstrap 5**
+- **Firebase Authentication**
+- **localStorage**
+- **Vercel (deploy)**
+
+---
+
+## 🚀 Como rodar localmente
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/ford-reviews.git
+cd ford-reviews
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Rode a aplicação:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Acesse:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+## 🧪 Teste com Usuário Simples
+
+- Crie uma conta na aba **Cadastro**
+- Aceite os Termos de Uso (conforme a LGPD)
+- Faça login e experimente:
+
+  - Avaliar veículos
+  - Enviar fotos
+  - Navegar entre abas e componentes
+
+---
+
+## ⚙️ Firebase
+
+- A autenticação com Google utiliza Firebase.
+- Certifique-se de adicionar seu domínio (ex: `vercel.app`) nos **domínios autorizados** do Firebase.
+
+---
+
+## 📄 Licença
+
+Projeto desenvolvido por **Luiz Oliveira** para fins educacionais e de portfólio. Livre para uso e modificação. 🚀
+
+---
+
+## 📬 Contato
+
+- Email: luiz@exemplo.com
+- GitHub: [github.com/seu-usuario](https://github.com/seu-usuario)
+- LinkedIn: [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
+---
+
+## 📁 Estrutura de Pastas
+
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
+ford-review/
+├── src/
+│   ├── app/
+│   │   ├── pages/
+│   │   │   ├── auth/               # Tela de login/cadastro
+│   │   │   ├── dashboard/          # Dashboard com filtros e cards
+│   │   │   ├── car-details/        # Detalhes, avaliações e galeria
+│   │   │   └── meus-reviews/       # Avaliações do usuário logado
+│   │   ├── data/                   # Mock de veículos
+│   │   ├── sidebar/                # Componente offcanvas lateral
+│   │   ├── firebase.config.ts      # Configuração do Firebase
+│   │   ├── app.routes.ts           # Rotas da aplicação
+│   │   └── app.config.ts           # Configuração principal
+│   ├── assets/
+│   │   ├── images/                 # Imagens (logo, carros, etc.)
+│   │   └── videos/                 # Vídeo de fundo do login
+│   ├── index.html
+│   └── styles.css
+├── angular.json
+├── tsconfig.json
+├── package.json
+└── README.md
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
