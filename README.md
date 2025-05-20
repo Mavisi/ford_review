@@ -31,7 +31,7 @@ Uma aplicação web interativa e responsiva para avaliações de veículos da Fo
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/ford-reviews.git
+git clone https://github.com/Mavisi/ford_review
 cd ford-reviews
 ```
 
@@ -76,15 +76,16 @@ http://localhost:4200
 
 ## 📄 Licença
 
-Projeto desenvolvido por **Luiz Oliveira** para fins educacionais e de portfólio. Livre para uso e modificação. 🚀
+Projeto desenvolvido por **Marcos Santana** para fins educacionais e de portfólio. Livre para uso e modificação. 🚀
 
 ---
 
 ## 📬 Contato
 
-- Email: luiz@exemplo.com
-- GitHub: [github.com/seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
+- Email: marcos.vssjr@outlook.com.com
+- GitHub: [github.com/Mavisi](https://github.com/Mavisi)
+- LinkedIn: [linkedin.com/in/m4visi](https://www.linkedin.com/in/m4visi/)
+
 ---
 
 ## 📁 Estrutura de Pastas
@@ -112,4 +113,9 @@ ford-review/
 ├── tsconfig.json
 ├── package.json
 └── README.md
+```
+## 
+
+```
+
 ```
