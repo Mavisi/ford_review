@@ -117,5 +117,5 @@ ford-review/
 ## 
 
 ```
-
+Obrigado a Deus por tudo.
 ```
