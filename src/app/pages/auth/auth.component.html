@@ -54,11 +54,17 @@
           required
           placeholder="Sua senha"
         />
-        <button type="button" class="btn btn-sm py-0 position-absolute top-50 end-0 me-2"
-        style="transform: translateY(15%)"
-        (click)="showPasswordLogin = !showPasswordLogin">
-  <i class="bi" [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"></i>
-</button>
+        <button
+          type="button"
+          class="btn btn-sm py-0 position-absolute top-50 end-0 me-2"
+          style="transform: translateY(15%)"
+          (click)="showPasswordLogin = !showPasswordLogin"
+        >
+          <i
+            class="bi"
+            [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"
+          ></i>
+        </button>
       </div>
 
       <button type="submit" class="btn btn-dark w-100">Entrar</button>
@@ -91,11 +97,17 @@
           placeholder="Escolha uma senha"
         />
 
-        <button type="button" class="btn btn-sm py-0 position-absolute top-50 end-0 me-2"
-        style="transform: translateY(15%)"
-        (click)="showPasswordLogin = !showPasswordLogin">
-  <i class="bi" [ngClass]="showPasswordLogin ? 'bi-eye-slash' : 'bi-eye'"></i>
-</button>
+        <button
+          type="button"
+          class="btn btn-sm py-0 position-absolute top-50 end-0 me-2"
+          style="transform: translateY(15%)"
+          (click)="showPasswordRegister = !showPasswordRegister"
+        >
+          <i
+            class="bi"
+            [ngClass]="showPasswordRegister ? 'bi-eye-slash' : 'bi-eye'"
+          ></i>
+        </button>
       </div>
 
       <div class="mb-3">

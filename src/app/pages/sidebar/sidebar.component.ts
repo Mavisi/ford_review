@@ -1,8 +1,9 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 declare const bootstrap: any;
+
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -10,12 +11,17 @@ declare const bootstrap: any;
   styleUrls: ['./sidebar.component.css'],
   imports: [CommonModule],
 })
-export class SidebarComponent {
-  loggedUser = JSON.parse(localStorage.getItem('loggedUser') || 'null');
+export class SidebarComponent implements OnInit {
+  loggedUser: any = null;
 
   constructor(private router: Router) {}
 
   @ViewChild('offcanvasRef') offcanvasRef!: ElementRef;
+
+  ngOnInit(): void {
+    // Carrega o usuário logado assim que o componente for inicializado
+    this.loggedUser = JSON.parse(localStorage.getItem('loggedUser') || 'null');
+  }
 
   logoutAndClose() {
     localStorage.removeItem('loggedUser');

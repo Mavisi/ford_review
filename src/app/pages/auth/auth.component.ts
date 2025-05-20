@@ -12,11 +12,11 @@ import { auth, provider } from '../../firebase.config';
   styleUrls: ['./auth.component.css'],
   imports: [CommonModule, FormsModule, RouterModule], 
 })
-export class AuthComponent implements AfterViewInit {
+export class AuthComponent implements AfterViewInit  {
   @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
 
-  ngAfterViewInit(): void {
-    // ✅ Força o vídeo a iniciar sem som
+  ngAfterViewInit(): void { // Forçar o vídeo a iniciar sem som
+    
     this.bgVideo.nativeElement.muted = true;
     this.bgVideo.nativeElement.play();
   }
