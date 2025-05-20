@@ -4,7 +4,7 @@ Uma aplicação web interativa e responsiva para avaliações de veículos da Fo
 
 ## 📸 Preview
 
-![Ford Reviews Preview](assets/images/ford-logo.png)
+![Ford Reviews Preview](src/assets/images/ford-logo.png)
 
 ---
 
