@@ -2,12 +2,6 @@
 
 Uma aplicação web interativa e responsiva para avaliações de veículos da Ford. Os usuários podem se cadastrar, fazer login (incluindo via Google), avaliar veículos, adicionar fotos, ver reviews de outros usuários e visualizar suas próprias avaliações. Tudo armazenado localmente no navegador com uma UI moderna e animada.
 
-## 📸 Preview
-
-![Ford Reviews Preview](src/assets/images/ford-logo.png)
-
----
-
 ## ✨ Funcionalidades
 
 - 🔐 Autenticação com usuário/senha
