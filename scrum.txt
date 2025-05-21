@@ -1,0 +1,75 @@
+📘 Documentação SCRUM - Projeto Ford Review
+
+🔹 Nome do Projeto: Ford Review - Plataforma de Avaliação de Veículos da Ford
+🔹 Duração Total do Projeto: 1 Sprint1 (1 semana1)
+🔹 Time de Desenvolvimento: 1 Desenvolvedor Fullstack 
+
+------------------------------------------------------------
+🗂️ Product Backlog:
+- Autenticação de usuários com e-mail e Google
+- Tela de login/cadastro responsiva com vídeo de fundo
+- Dashboard com cards de veículos filtráveis
+- Página de detalhes com avaliações e galeria de fotos
+- Componente de sidebar colapsável e com offcanvas
+- Página "Meus Reviews" com avaliações do usuário
+- Armazenamento local (localStorage) de dados mockados
+- Publicação e hospedagem via Vercel
+- Adaptação ao tema escuro com fundo animado
+- Política de Termos & Condições (LGPD)
+- Ajustes responsivos, estilizações e correções
+
+------------------------------------------------------------
+🚀 Sprint 1: Fundamentos da Aplicação
+🔸 Planejamento:
+  - Criação da estrutura base Angular
+  - Implementação do componente de login/cadastro
+  - Integração do Bootstrap e vídeo de fundo
+🔸 Concluído:
+  ✅ Alternância entre login e cadastro
+  ✅ Validações básicas e botão "Entrar com Google" (inicial)
+
+------------------------------------------------------------
+🚀 Sprint 2: Funcionalidades Principais
+🔸 Planejamento:
+  - Dashboard com cards filtráveis
+  - Tela de detalhes dos carros
+  - Adição de comentários e fotos
+🔸 Concluído:
+  ✅ Mock de dados e filtros dinâmicos
+  ✅ Avaliações com nota e data
+  ✅ Upload de imagem para galeria
+  ✅ Tabs: Avaliações / Galeria
+
+------------------------------------------------------------
+🚀 Sprint 3: Experiência do Usuário e Refinamento
+🔸 Planejamento:
+  - Sidebar com botão toggle
+  - Página "Meus Reviews"
+  - Aplicação de estilos finais
+  - Firebase Auth com Google
+🔸 Concluído:
+  ✅ Sidebar com offcanvas e colapsável
+  ✅ Listagem dos comentários do usuário
+  ✅ Ajuste visual com tema escuro animado
+  ✅ Correções para deployment no Vercel
+  ✅ Implementação da LGPD e Termos
+
+------------------------------------------------------------
+📌 Retrospectiva:
+✔️ Pontos Positivos:
+  - Projeto finalizado com todas as funcionalidades previstas
+  - Aprendizado prático com Angular standalone e Firebase
+  - Integração de design moderno e responsivo
+
+⚠️ Pontos de Atenção:
+  - Ajustes finos com autenticação Google em ambiente de produção
+  - Melhoria contínua da acessibilidade e responsividade mobile
+  - Metodo de login administrativo com funções especificas
+  - Editar e apagar comentarios
+  - Integrar a Aplicação com um banco de dados
+  - Criar a aba de configuraçoes de conta
+------------------------------------------------------------
+📅 Entregável Final:
+- Deploy no Vercel
+- Código-fonte organizado
+- Documentação README + SCRUM
