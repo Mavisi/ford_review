@@ -2,3 +2,22 @@
   height: 100%;
   object-fit: cover;
 }
+
+.centralizar-imagem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+}
+.centralizar-imagem img {
+  height: 300px;              /* altura da imagem */
+  width: auto;                /* largura proporcional */
+  border-radius: 12px;        /* bordas arredondadas */
+  max-width: 100%;            /* responsiva em telas pequenas */
+}
+
+/* 🔍 Efeito ao passar o mouse */
+.centralizar-imagem img:hover {
+  transform: scale(1.05);               /* levemente maior */
+  box-shadow: 0 10px 20px rgba(245, 243, 243, 0.2);  /* sombra suave */
+}

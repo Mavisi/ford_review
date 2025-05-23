@@ -1,13 +1,28 @@
 <app-sidebar></app-sidebar>
 
-<div class="container py-4" >
-  <h3 class="mb-4">Meus Reviews</h3>
+<div class="container py-4">
+  <h3 class="mb-4 text-center">Meus Reviews</h3>
 
-  <div *ngIf="allReviews.length === 0" class="text-muted">Você ainda não avaliou nenhum veículo.</div>
+  
+  <!-- Imagem exibida quando não há comentários -->
+<div *ngIf="allReviews.length === 0" class="text-center">
+  <div class="centralizar-imagem">
+  <img 
+    src="assets/images/comentario.jfif"
+    alt="Sem comentários"
+  />
+  </div>
+</div>
 
+
+  <!-- Loop que renderiza todos os reviews do usuário -->
   <div *ngFor="let item of allReviews" class="card mb-3 shadow-sm">
     <div class="card-body">
+
+      <!-- Exibe o nome e ano do carro avaliado -->
       <h5 class="card-title">{{ item.car.name }} ({{ item.car.year }})</h5>
+
+      <!-- Exibe as estrelas da avaliação -->
       <div class="mb-2">
         <i class="bi" *ngFor="let i of [1,2,3,4,5]"
            [ngClass]="{
@@ -15,8 +30,39 @@
              'bi-star text-muted': i > item.review.rating
            }"></i>
       </div>
-      <p class="card-text">{{ item.review.comment }}</p>
-      <small class="text-muted">Publicado em {{ item.review.date }}</small>
+
+      <!-- Bloco de edição do comentário e nota -->
+      <div *ngIf="editMode && reviewToEdit?.date === item.review.date">
+        <!-- Campo para editar comentário -->
+        <label class="form-label">Comentário</label>
+        <textarea [(ngModel)]="reviewToEdit.comment" class="form-control mb-2"></textarea>
+
+        <!-- Campo para editar a nota -->
+        <label class="form-label">Nota</label>
+        <select [(ngModel)]="reviewToEdit.rating" class="form-select mb-3">
+          <option *ngFor="let i of [1,2,3,4,5]" [value]="i">{{ i }}</option>
+        </select>
+
+        <!-- Botões para salvar ou cancelar a edição -->
+        <button class="btn btn-success me-2" (click)="saveEdit()">Salvar</button>
+        <button class="btn btn-secondary" (click)="editMode = false">Cancelar</button>
+      </div>
+
+      <!-- Bloco padrão de exibição (quando não está em edição) -->
+      <div *ngIf="!(editMode && reviewToEdit?.date === item.review.date)">
+        <!-- Comentário do usuário -->
+        <p class="card-text">{{ item.review.comment }}</p>
+
+        <!-- Botões de ação: editar ou excluir o review -->
+        <div class="mb-2">
+          <button class="btn btn-sm btn-warning me-2" (click)="startEdit(item)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteReview(item)">Excluir</button>
+        </div>
+
+        <!-- Data de publicação do review -->
+        <small class="text-muted">Publicado em {{ item.review.date }}</small>
+      </div>
+
     </div>
   </div>
 </div>

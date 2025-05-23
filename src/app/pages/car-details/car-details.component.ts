@@ -84,9 +84,8 @@ export class CarDetailsComponent implements OnInit {
 
   // Publica uma nova avaliação e salva no localStorage
   submitReview() {
+    console.log('Chamou submitReview');
 
-     console.log('Chamou submitReview');
-     
     if (!this.car || !this.loggedUser) return;
 
     const newReview = {
@@ -125,5 +124,14 @@ export class CarDetailsComponent implements OnInit {
 
       reader.readAsDataURL(input.files[0]);
     }
+  }
+  deletePhoto(index: number): void {
+    const carId = this.car?.id;
+    if (!carId) return;
+
+    const saved = JSON.parse(localStorage.getItem(`gallery_${carId}`) || '[]');
+    saved.splice(index, 1); // remove a imagem
+    localStorage.setItem(`gallery_${carId}`, JSON.stringify(saved));
+    this.gallery = [...saved]; // atualiza a galeria exibida
   }
 }

@@ -10,13 +10,14 @@ import { auth, provider } from '../../firebase.config';
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
-  imports: [CommonModule, FormsModule, RouterModule], 
+  imports: [CommonModule, FormsModule, RouterModule],
 })
-export class AuthComponent implements AfterViewInit  {
+export class AuthComponent implements AfterViewInit {
   @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
 
-  ngAfterViewInit(): void { // Forçar o vídeo a iniciar sem som
-    
+  ngAfterViewInit(): void {
+    // Forçar o vídeo a iniciar sem som
+
     this.bgVideo.nativeElement.muted = true;
     this.bgVideo.nativeElement.play();
   }
@@ -81,12 +82,25 @@ export class AuthComponent implements AfterViewInit  {
       return;
     }
 
+    if (this.registerData.password.length < 6) {
+    alert('A senha deve conter pelo menos 6 caracteres.');
+    return;
+  }
+
     const newUser = { ...this.registerData };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
     alert('Cadastro realizado com sucesso! Faça login agora.');
-    this.toggleMode(true);
+
+    // Limpa os campos após o cadastro
+    this.registerData = {
+      username: '',
+      password: '',
+      displayName: '',
+    };
     this.acceptedTerms = false;
+
+    this.toggleMode(true);
   }
 
   abrirModalTermos(event: Event) {

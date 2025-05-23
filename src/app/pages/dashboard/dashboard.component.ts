@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
  constructor(private router: Router) {}
 
 goToDetails(id: number): void {
-  this.router.navigate(['/carro', id]);
+  this.router.navigate(['/car', id]);
 }
 
   cars: Vehicle[] = [];

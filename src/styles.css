@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Ford Antenna", sans-serif;
   min-height: 100vh;
 }
 .bg-animado {
@@ -25,4 +25,12 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+@font-face {
+  font-family: "Ford Antenna";
+  src: url("assets/fonts/ford-antenna/ford-antenna-medium-58955836e60d2.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }

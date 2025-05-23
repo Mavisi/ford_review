@@ -1,14 +1,20 @@
 <app-sidebar></app-sidebar>
 
-<div class="container py-4" >
-  <button class="btn btn-link mb-3" (click)="goBack()">← Voltar para Dashboard</button>
+<div class="container py-4">
+  <button class="btn btn-link mb-3 text-white" (click)="goBack()">
+    ← Voltar para Dashboard
+  </button>
 
   <!-- Detalhes do veículo -->
   <div class="card shadow-lg mb-4">
     <div class="row g-0">
       <div class="col-md-5">
-        <img [src]="car?.image" class="img-fluid rounded-start" alt="{{ car?.name }}"
-             (error)="car!.image = 'assets/images/default.jpg'">
+        <img
+          [src]="car?.image"
+          class="img-fluid rounded-start"
+          alt="{{ car?.name }}"
+          (error)="car!.image = 'assets/images/default.jpg'"
+        />
       </div>
       <div class="col-md-7 p-4">
         <h3 class="fw-bold">{{ car?.name }}</h3>
@@ -27,83 +33,149 @@
 
         <p>{{ car?.description }}</p>
 
-        <button class="btn btn-dark me-2" (click)="openModal()">Adicionar Avaliação</button>
-        <input type="file" accept="image/*" hidden #fileInput (change)="addPhoto($event)">
-        <button class="btn btn-outline-secondary" (click)="fileInput.click()">Adicionar Foto</button>
-
+        <button class="btn btn-dark me-2" (click)="openModal()">
+          Adicionar Avaliação
+        </button>
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          #fileInput
+          (change)="addPhoto($event)"
+        />
+        <button class="btn btn-outline-secondary" (click)="fileInput.click()">
+          Adicionar Foto
+        </button>
       </div>
     </div>
   </div>
 
   <!-- Controle de abas dinâmicas -->
-<ul class="nav nav-tabs mb-3">
-  <li class="nav-item">
-    <a class="nav-link" [class.active]="activeTab === 'reviews'" (click)="activeTab = 'reviews'">
-      Avaliações ({{ reviews.length }})
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [class.active]="activeTab === 'gallery'" (click)="activeTab = 'gallery'">
-      Galeria ({{ gallery.length }})
-    </a>
-  </li>
-</ul>
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'reviews'"
+        (click)="activeTab = 'reviews'"
+      >
+        Avaliações ({{ reviews.length }})
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'gallery'"
+        (click)="activeTab = 'gallery'"
+      >
+        Galeria ({{ gallery.length }})
+      </a>
+    </li>
+  </ul>
 
-<!-- Avaliações -->
-<div *ngIf="activeTab === 'reviews'">
-  <div *ngFor="let r of reviews" class="card bg-white text-dark p-3 mb-3">
-    <div class="d-flex justify-content-between">
-      <strong>{{ r.user }}</strong>
-      <span>
-        <i class="bi" *ngFor="let i of [1,2,3,4,5]"
-           [ngClass]="{
-             'bi-star-fill text-warning': i <= r.rating,
-             'bi-star text-muted': i > r.rating
-           }">
-        </i>
-      </span>
-    </div>
-    <small class="text-muted">{{ r.date }}</small>
-    <p class="mt-2 mb-0">{{ r.comment }}</p>
-  </div>
-</div>
-
-<!-- Galeria -->
-<div *ngIf="activeTab === 'gallery'">
-  <div *ngIf="gallery.length === 0" class="text-muted mb-3">Nenhuma foto enviada ainda.</div>
-  <div class="row">
-    <div class="col-md-4 mb-3" *ngFor="let img of gallery">
-      <div class="card shadow-sm">
-        <img [src]="img" class="card-img-top" alt="Foto do veículo">
+  <!-- Avaliações -->
+  <div *ngIf="activeTab === 'reviews'">
+    <div *ngIf="reviews.length === 0" class="text-center my-4">
+     <div class="centralizar-imagem">
+        <img src="assets/images/comentario.jfif" alt="Sem comentários" />
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal de Avaliação -->
-<div class="modal fade show d-block" tabindex="-1" *ngIf="modalAberto" style="background-color: rgba(0,0,0,0.5);">
-  <div class="modal-dialog">
-    <div class="modal-content p-4">
-      <div class="modal-header">
-        <h5 class="modal-title">Avaliar {{ car?.name }}</h5>
-        <button type="button" class="btn-close" (click)="closeModal()"></button>
+    <div *ngFor="let r of reviews" class="card bg-white text-dark p-3 mb-3">
+      <div class="d-flex justify-content-between">
+        <strong>{{ r.user }}</strong>
+        <span>
+          <i
+            class="bi"
+            *ngFor="let i of [1, 2, 3, 4, 5]"
+            [ngClass]="{
+              'bi-star-fill text-warning': i <= r.rating,
+              'bi-star text-muted': i > r.rating
+            }"
+          ></i>
+        </span>
       </div>
-      <div class="modal-body">
-        <p class="text-muted">Compartilhe sua experiência com este veículo.</p>
+      <small class="text-muted">{{ r.date }}</small>
+      <p class="mt-2 mb-0">{{ r.comment }}</p>
+    </div>
+  </div>
 
-        <label class="form-label">Nota</label>
-        <div class="mb-3">
-          <i class="bi" *ngFor="let star of [1,2,3,4,5]"
-             (click)="selectedRating = star"
-             [ngClass]="star <= selectedRating ? 'bi-star-fill text-warning' : 'bi-star text-muted'"
-             style="font-size: 1.5rem; cursor: pointer;"></i>
+  <!-- Galeria -->
+  <div *ngIf="activeTab === 'gallery'">
+    <!-- Sem fotos -->
+    <div *ngIf="gallery.length === 0" class="text-center my-4">
+      <div class="centralizar-imagem">
+        <img src="assets/images/comentario.jfif" alt="Sem comentários" />
+      </div>
+    </div>
+
+    <!-- Com fotos -->
+    <div class="row" *ngIf="gallery.length > 0">
+      <div class="col-md-4 mb-3" *ngFor="let img of gallery; let i = index">
+        <div class="card shadow-sm position-relative">
+          <img [src]="img" class="card-img-top" alt="Foto do veículo" />
+
+          <!-- Botão excluir -->
+          <button
+            class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+            (click)="deletePhoto(i)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
         </div>
-
-        <label class="form-label">Comentário</label>
-        <textarea class="form-control" rows="4" [(ngModel)]="reviewText" placeholder="Escreva sua avaliação..."></textarea>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" (click)="submitReview()">Publicar</button>
+    </div>
+  </div>
+
+  <!-- Modal de Avaliação -->
+  <div
+    class="modal fade show d-block"
+    tabindex="-1"
+    *ngIf="modalAberto"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Avaliar {{ car?.name }}</h5>
+          <button
+            type="button"
+            class="btn-close"
+            (click)="closeModal()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">
+            Compartilhe sua experiência com este veículo.
+          </p>
+
+          <label class="form-label">Nota</label>
+          <div class="mb-3">
+            <i
+              class="bi"
+              *ngFor="let star of [1, 2, 3, 4, 5]"
+              (click)="selectedRating = star"
+              [ngClass]="
+                star <= selectedRating
+                  ? 'bi-star-fill text-warning'
+                  : 'bi-star text-muted'
+              "
+              style="font-size: 1.5rem; cursor: pointer"
+            ></i>
+          </div>
+
+          <label class="form-label">Comentário</label>
+          <textarea
+            class="form-control"
+            rows="4"
+            [(ngModel)]="reviewText"
+            placeholder="Escreva sua avaliação..."
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" (click)="submitReview()">
+            Publicar
+          </button>
+        </div>
       </div>
     </div>
   </div>

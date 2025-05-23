@@ -1,15 +1,22 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './pages/auth/auth.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CarDetailsComponent } from './pages/car-details/car-details.component';
-import { MeusReviewsComponent } from './pages/meus-reviews/meus-reviews.component';
-
+import { AuthGuard } from './guards/auth.guard'; // ajuste o caminho se necessário
 
 export const routes: Routes = [
-  { path: 'auth', component: AuthComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'carro/:id', component: CarDetailsComponent },
-  { path: 'meus-reviews', component: MeusReviewsComponent },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth' },
+  { path: 'auth', loadComponent: () => import('./pages/auth/auth.component').then(m => m.AuthComponent) },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'car/:id',
+    loadComponent: () => import('./pages/car-details/car-details.component').then(m => m.CarDetailsComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'meus-reviews',
+    loadComponent: () => import('./pages/meus-reviews/meus-reviews.component').then(m => m.MeusReviewsComponent),
+    canActivate: [AuthGuard]
+  }
 ];
