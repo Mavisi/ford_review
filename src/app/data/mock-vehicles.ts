@@ -18,7 +18,7 @@ const initialVehicles: Vehicle[] = [
     type: 'Hatch',
     engine: 'Motor 1.0',
     description: 'Compacto, econômico e ideal para a cidade. O Ford Ka é perfeito para quem procura agilidade e baixo consumo.',
-    image: 'assets/images/ka.jpg'
+    image: 'assets/images/ka.jpg' 
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const initialVehicles: Vehicle[] = [
     type: 'Pickup',
     engine: 'Motor 3.2 Diesel',
     description: 'Robusta e potente, a Ranger é ideal para trabalho pesado e aventuras off-road, oferecendo conforto e desempenho.',
-    image: 'assets/images/ranger.jpg'
+    image: 'assets/images/ranger2.jpg'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const initialVehicles: Vehicle[] = [
     type: 'SUV',
     engine: 'Motor 1.5',
     description: 'SUV urbano com boa altura do solo e design aventureiro. Combina eficiência e versatilidade para uso diário.',
-    image: 'assets/images/ecosport.jpg'
+    image: 'assets/images/ecosport.jpeg'
   },
   {
     id: 4,

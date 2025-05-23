@@ -20,6 +20,13 @@
         <h3 class="fw-bold">{{ car?.name }}</h3>
         <h5 class="text-muted">{{ car?.year }} - {{ car?.type }}</h5>
 
+        <!-- Média de avaliações -->
+        <div *ngIf="reviews.length > 0" class="mt-2">
+          <strong>Avaliações:</strong>
+          {{ getAverageRating().toFixed(1) }}
+          <i class="bi bi-star-fill text-warning"></i>
+        </div>
+
         <div class="row mt-3 mb-3">
           <div class="col">
             <span class="text-muted">Motor</span><br />
@@ -75,7 +82,7 @@
   <!-- Avaliações -->
   <div *ngIf="activeTab === 'reviews'">
     <div *ngIf="reviews.length === 0" class="text-center my-4">
-     <div class="centralizar-imagem">
+      <div class="centralizar-imagem">
         <img src="assets/images/comentario.jfif" alt="Sem comentários" />
       </div>
     </div>

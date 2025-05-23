@@ -134,4 +134,11 @@ export class CarDetailsComponent implements OnInit {
     localStorage.setItem(`gallery_${carId}`, JSON.stringify(saved));
     this.gallery = [...saved]; // atualiza a galeria exibida
   }
+
+  getAverageRating(): number {
+  if (this.reviews.length === 0) return 0;
+  const total = this.reviews.reduce((sum, r) => sum + r.rating, 0);
+  return total / this.reviews.length;
+}
+
 }
